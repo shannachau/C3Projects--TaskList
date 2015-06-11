@@ -8,6 +8,11 @@ class TaskSite < Sinatra::Base
   register Sinatra::Reloader
 
   get "/" do
+    our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
+
+    @current_task_display = our_database.display_db
+
+
     erb :home
   end
 
@@ -15,7 +20,10 @@ class TaskSite < Sinatra::Base
     @name = params[:name]
     @description = params[:description]
     @completed_date = params[:completed_date]
-    TaskList::ModifyDatabase.add_to_db(params.values)
+    our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
+
+    @tasks = our_database.add_to_db(@name, @description, @completed_date)
+    @current_task_display = our_database.display_db
     'redirect to ("/")'
     erb :home
   end

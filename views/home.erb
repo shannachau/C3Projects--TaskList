@@ -6,6 +6,11 @@
   <%= @description %>
   <%= @completed_date %>
 
+
+    <% @current_task_display.each do |task| %>
+        <%= task %>
+    <% end %>
+
 <pre>
   <%= params %>
 </pre>
