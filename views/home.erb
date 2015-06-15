@@ -1,16 +1,24 @@
 <h1>THIS IS HOME PAGE</h1>
 
 <h1>this will show all of the data/tasks</h1>
+<table>
+<tr>
+  <th> Name </th>
+  <th> Description </th>
+  <th> Date Completed </th>
+</tr>
 
-  <%= @name %>
-  <%= @description %>
-  <%= @completed_date %>
-
-
+<% if @current_task_display %>
     <% @current_task_display.each do |task| %>
-        <%= task %>
-    <% end %>
+    <div>
+      <tr>
+        <td> <%= task[1] %> </td>
+        <td> <%= task[2] %> </td>
+        <td> <%= task[3] %> </td>
+      </tr>
+    </div>
 
-<pre>
-  <%= params %>
-</pre>
+    <% end %>
+<%end%>
+
+</table>

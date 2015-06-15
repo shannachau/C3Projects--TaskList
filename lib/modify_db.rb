@@ -26,7 +26,7 @@ module TaskList
   end
 
   def display_db
-    statement = "SELECT FROM * posts;"
+    statement = "SELECT * FROM posts;"
     query!(statement)
   end
 
