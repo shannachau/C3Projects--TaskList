@@ -1,0 +1,20 @@
+<h1> Are you sure you want to delete this entry? </h1>
+
+
+<% if @entry %>
+  <% @entry.each do |column| %>
+  <% @id_num = column[0] %>
+  <%= column[0] %>
+  <%= column[1] %>
+  <%= column[2] %>
+  <% end %>
+<% end %>
+
+
+<form action="/" method="get">
+  <input type="submit" name="No" value="No" id="No">
+</form>
+
+<form action= <%= "/delete_confirmation/#{@id_num}" %> method="post">
+  <input type="submit" name="Yes" value="Yes" id="Yes">
+</form>

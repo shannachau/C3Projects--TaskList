@@ -9,13 +9,16 @@
 
 <% if @current_task_display %>
     <% @current_task_display.each do |task| %>
+    <% id_num = task[0] %>
     <div>
       <tr>
         <td> <%= task[1] %> </td>
         <td> <%= task[2] %> </td>
         <td> <%= task[3] %> </td>
         <td>
-          <input type="button" name="Delete" value="Delete">
+           <form action= <%= "/delete_confirmation/#{id_num}" %> method="get">
+             <input type="submit" name="Delete" value="Delete" id="deleted_task">
+           </form>
         </td>
       </tr>
     </div>

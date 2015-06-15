@@ -9,6 +9,7 @@ class TaskSite < Sinatra::Base
 
   get "/" do
     our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
+    @erase = our_database.delete_entry(params[:id])
     @current_task_display = our_database.display_db
 
     erb :home
@@ -31,8 +32,22 @@ class TaskSite < Sinatra::Base
     @tasks = our_database.add_to_db(@name, @description, @completed_date)
     @current_task_display = our_database.display_db
     redirect "/"
-
     erb :submit_task
+  end
+
+  get "/delete_confirmation/:id" do
+    our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
+    @entry = our_database.display_entry(params[:id])
+    erb :delete_confirmation
+  end
+
+  post "/delete_confirmation/:id" do
+    our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
+    @erase = our_database.delete_entry(params[:id])
+    @current_task_display = our_database.display_db
+    redirect "/"
+    erb :delete_confirmation
+
   end
 
 end

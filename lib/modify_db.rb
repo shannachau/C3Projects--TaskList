@@ -8,21 +8,10 @@ module TaskList
     @database_name = database_name
   end
 
-  # def your_custom_query_here(*args)
-  #   # santitize/validate your arguments
-  #
-  #   # prepare your statement
-  #
-  #   # call `query!` to interact with the database
-  #
-  #   # determine what should be returned
-  # end
-
   def add_to_db(name, description, completed_date)
     statement = "INSERT INTO posts (name, description, completed_date) VALUES ('#{name}', '#{description}', '#{completed_date}');"
 
     query!(statement)
-
   end
 
   def display_db
@@ -30,13 +19,15 @@ module TaskList
     query!(statement)
   end
 
+  def delete_entry(id)
+    statement = "DELETE FROM posts WHERE id = #{id};"
+    query!(statement)
+  end
 
-
-
-
-
-
-
+  def display_entry(id)
+    statement = "SELECT name,description,completed_date FROM posts WHERE id = #{id};"
+    query!(statement)
+  end
 
 
   end
