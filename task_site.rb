@@ -11,7 +11,6 @@ class TaskSite < Sinatra::Base
     our_database = TaskList::ModifyDatabase.new("./db/taskList.db")
     @current_task_display = our_database.display_db
 
-
     erb :home
   end
 
